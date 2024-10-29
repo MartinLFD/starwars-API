@@ -26,10 +26,8 @@ class User(db.Model):
 
 class Favorite_planet(db.Model):
     __tablename__ = 'favorite_planet'
-    user_primary_id = Column(Integer, primary_key=True)
-    planet_primary_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    planet_id = Column(Integer, ForeignKey('planet.id'))
+    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    planet_id = Column(Integer, ForeignKey('planet.id'), primary_key=True)
 
     user = relationship('User', back_populates='favorite_planet')
     planet = relationship('Planet', back_populates='favorites')  # Relación inversa
@@ -39,6 +37,7 @@ class Favorite_planet(db.Model):
             'user_id': self.user_id,
             'planet_id': self.planet_id
         }
+
 
 class Planet(db.Model):
     __tablename__ = 'planet'
@@ -71,10 +70,8 @@ class Planet(db.Model):
 
 class Favorite_character(db.Model):
     __tablename__ = 'favorite_character'
-    user_primary_id = Column(Integer, primary_key=True)
-    character_primary_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    character_id = Column(Integer, ForeignKey('character.id'))
+    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    character_id = Column(Integer, ForeignKey('character.id'), primary_key=True)
 
     user = relationship('User', back_populates='favorite_character')
     character = relationship('Character', back_populates='favorites')  # Relación inversa
@@ -84,6 +81,7 @@ class Favorite_character(db.Model):
             'user_id': self.user_id,
             'character_id': self.character_id
         }
+
 
 class Character(db.Model):
     __tablename__ = 'character'
